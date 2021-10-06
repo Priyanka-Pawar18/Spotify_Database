@@ -1,0 +1,252 @@
+Admin table-
+create table Admin (Ad_id int primary key, Ad_name varchar(200), Ad_mail varchar(200));
+
+Values-
+ insert into Admin values (1, "Ankita", "ankita21@gmail.com");
+ insert into Admin values (2, "Om", "om13@gmail.com");
+ insert into Admin values (3, "Gayatri", "gayatri10@yahoo.com");
+ insert into Admin values (4, "Sahil", "sahil99@gmail.com");
+ insert into Admin values (5, "Priyanka", "priyanka18@rediffmail.com");
+ insert into Admin values (6, "Pranal", "pranal20@rediffmail.com");
+ insert into Admin values (7, "Anshul", "anshul29@yahoo.com");
+ insert into Admin values (8, "Sidd", "sidd23@gmail.com");
+ insert into Admin values (9, "Jim", "jim3@rediffmail.com");
+ insert into Admin values (10, "Anish", "anish4@rediffmail.com");
+
+
+User table-
+ create table User (us_id int primary key, us_name varchar(200), us_phone varchar(10), us_mail varchar(200));
+
+Values-
+ insert into User values(101,"Mohit Sharma", "1234567890", "Mohits@gmail.com");
+ insert into User values(102,"Vikram Kohli", "7232456777", "Vik_k@yahoo.com");
+ insert into User values(103,"Bhuvi Pradhan", "8412257708", "BhuviP@gmail.com");
+ insert into User values(104,"Irfan Pathani", "9822580544", "IrfanPathani2@rediffmail.com");
+ insert into User values(105,"Neha Singh Sodi", "9071124511", "NehaSingh13@yahoo.com");
+ insert into User values(106,"Gautam Kumar", "7033456600", "GautamK24@gmail.com");
+ insert into User values(107,"Neeraja Verma ", "7234456788", "NeerajaV34@rediffmail.com");
+ insert into User values(108,"Vinny Fernandes ", "7870905443", "VinnyF04@gmail.com");
+ insert into User values(109,"Saheeb Singh", "8090764544", "Saheeb54@yahoo.com");
+ insert into User values(110,"Suresh Agarwal", "8191245433", "Suresh88@gmail.com");
+ insert into User values(111,"Shivani Kadam", "8479446755", "Shivani8@gmail.com");
+ insert into User values(112,"Reema Patel", "8979145689", "ReemaPatel1@yahoo.com");
+ insert into User values(113,"Niharika Simone", "7051114578", "NiharikaP56@rediffmail.com");
+ insert into User values(114,"Yami Gulati", "9854664233", "YamiG89@gmail.com");
+
+Member table-
+create table Member (us_id int, mem_id varchar(20) primary key, mem_name varchar(200), mem_phone varchar(10), mem_mail varchar(200), foreign key(us_id) references User(us_id));
+
+Values-
+ insert into Member values (102, "m_501", "Vikram Kohli", "7232456777", "Vk_k@yahoo.com");
+ insert into Member values (105, "m_502", "Neha Singh Sodi", "9071124511", "NehaSigh13@yahoo.com");
+ insert into Member values (110, "m_503", "Suresh Agarwal", "8191245433", "Suresh88@gmail.com");
+ insert into Member values (113, "m_504", "Niharika Simone", "7051114578", "NiharikaP56@rediffmail.com");
+ insert into Member values (108, "m_505", "Vinny Fernandes", "7870905443", "VinnyF04@gmail.com");
+ insert into Member values (104, "m_506", "Irfan Pathani", "9822580544", "IrfanPathani2@rediffmail.com");
+ insert into Member values (114, "m_507", "Yami Gulati", "9854664233", "YamiG89@gmail.com");
+ insert into Member values (101, "m_508", "Mohit Sharma", "1234567890", "Mohits@gmail.com");
+ insert into Member values (107, "m_509", "Neeraja Verma", "7234456788", "NeerajaV34@rediffmail.com");
+ insert into Member values (103, "m_510", "Bhuvi Pradhan", "8412257708", "BhuviP@gmail.com");
+
+Membership table-
+create table Membership( us_id int, mem_id varchar(20), mem_regdate date, mem_expdate date, duration varchar(100), foreign key(us_id) references User(us_id), foreign key(mem_id) references Member(mem_id));
+
+
+VAlues-
+insert into Membership values (102,"m_501","2018-04-14","2018-05-13","1 month");
+insert into Membership values (105,"m_502","2017-05-29","2017-08-28","3 months");
+insert into Membership values (110,"m_503","2019-01-10","2020-01-09","1 year");
+insert into Membership values (113,"m_504","2018-03-12","2018-06-11","3 months");
+insert into Membership values (108,"m_505","2020-09-24","2021-09-23","1 year");
+insert into Membership values (104,"m_506","2017-01-09","2017-02-08","1 month");
+insert into Membership values (114,"m_507","2018-02-28","2018-05-27","3 months");
+insert into Membership values (101,"m_508","2019-01-19","2020-01-18","1 year");
+insert into Membership values (107,"m_509","2017-07-22","2018-07-21","1 year");
+insert into Membership values (103,"m_510","2019-04-17","2019-05-16","1 month");
+
+
+Membership_type
+create table Membership_type( mem_id varchar(20), mem_type varchar(50), offer_by_percentage int, foreign key(mem_id) references Member(mem_id));
+
+insert into membership_type values("m_501", "Platinum", 20);
+insert into membership_type values("m_502", "Gold", 10);
+insert into membership_type values("m_503", "Platinum", 20);
+insert into membership_type values("m_504", "Silver", 5);
+insert into membership_type values("m_505", "Gold", 10);
+insert into membership_type values("m_506", "Silver", 5);
+insert into membership_type values("m_507", "Gold", 10);
+insert into membership_type values("m_508", "Platinum", 20);
+insert into membership_type values("m_509", "Silver", 5);
+insert into membership_type values("m_510", "Gold", 10);
+
+
+Lang table:
+create table language (us_id int, song_name varchar(50), lang_name varchar(50), foreign key (us_id) references User(us_id));
+
+Values-
+insert into language values(111,"Chalte Chalte", "Hindi");
+insert into language values(106,"Agneepath", "Hindi");
+insert into language values(103,"Make It Right", "Korean");
+insert into language values(114,"21 guns", "English");
+insert into language values(107,"Despacito", "Spanish");
+insert into language values(102,"Whistle", "English");
+insert into language values(112,"Bella Ciao", "Spanish");
+insert into language values(108,"Bon Bon", "French");
+insert into language values(104,"TikTok", "English");
+insert into language values(109,"Malang", "Hindi");
+insert into language values(113,"Cava Cava", "French");
+insert into language values(102,"Dynamite", "Korean");
+insert into language values(112,"Yeehaw", "French");
+insert into language values(107,"La vien rose", "French");
+insert into language values(106,"Timber", "Korean");
+insert into language values(103,"Maahi ve", "Hindi");
+insert into language values(111,"Dard Ae Disco", "Hindi");
+insert into language values(111,"Summer of 69", "English");
+insert into language values(111,"Drive by", "English");
+insert into language values(114,"Mushi Mushi", "Korean");
+insert into language values(112,"Bebo", "Hindi");
+insert into language values(102,"Ghumar", "Hindi");
+insert into language values(108,"Bandook Meri Laila", "Hindi");
+insert into language values(104,"Beat it", "English");
+insert into language values(104,"Boom Boom pow", "Korean");
+insert into language values(111,"Kajra re", "Hindi");
+insert into language values(102,"Rosia", "French");
+
+
+genre table:
+ create table genre (us_id int, genre_name varchar(30), song varchar(100),foreign key (us_id) references User(us_id));
+
+Values:
+
+insert into genre values(111,"Soul", "Chalte Chalte");
+insert into genre values(106,"Rock", "Agneepath");
+insert into genre values(103,"Pop", "Make It Right");
+insert into genre values(114,"Rock", "21 guns");
+insert into genre values(107,"EDM", "Despacito");
+insert into genre values(102,"Pop", "Whistle");
+insert into genre values(112,"R&B", "Bella Ciao");
+insert into genre values(108,"EDM", "Bon Bon");
+insert into genre values(104,"HipHop", "TikTok");
+insert into genre values(109,"R&B", "Malang");
+insert into genre values(113,"HipHop", "Cava Cava");
+insert into genre values(102,"Soul", "Dynamite");
+insert into genre values(112,"HipHop", "Yeehaw");
+insert into genre values(107,"Rock", "La vien rose");
+insert into genre values(106,"Soul", "Timber");
+insert into genre values(103,"Pop", "Maahi ve");
+insert into genre values(111,"Pop", "Dard Ae Disco");
+insert into genre values(111,"Rock", "Summer of 69");
+insert into genre values(111,"EDM", "Drive by");
+insert into genre values(114,"R&B", "Mushi Mushi");
+insert into genre values(112,"EDM", "Bebo");
+insert into genre values(102,"EDM", "Ghumar");
+insert into genre values(108,"Rock", "Bandook Meri Laila");
+insert into genre values(104,"HipHop", "Beat it");
+insert into genre values(111,"Rock", "Kajra re");
+insert into genre values(102,"Soul", "Rosia");
+
+
+songs:
+create table songs (us_id int, song_name varchar(50), song_genre varchar(50),song_artist varchar(50), song_lang varchar(50), foreign key(us_id) references User(us_id));
+
+Values-
+
+insert into songs values(111,"Chalte Chalte","Soul", "Anu Malik","Hindi");
+insert into songs values(106,"Agneepath","Rock", "Arjit Singh","Hindi");
+insert into songs values(103,"Make It Right","Pop", "BTS","Korean");
+insert into songs values(114,"21 guns","Rock", "Greenday","English");
+insert into songs values(107,"Despacito","EDM", "Justin Bieber","Spanish");
+insert into songs values(102,"Whistle","Pop", "Florida","English");
+insert into songs values(112,"Bella Ciao","R&B", "BTS","Spanish");
+insert into songs values(108,"Bon Bon","EDM", "Greenday","French");
+insert into songs values(104,"TikTok","HipHop", "Major Lazer","English");
+insert into songs values(109,"Malang","R&B", "Anu Malik","Hindi");
+insert into songs values(113,"Cava Cava","HipHop", "Eva","French");
+insert into songs values(102,"Dynamite","Soul", "BTS","Korean");
+insert into songs values(112,"Yeehaw","HipHop", "Major Lazor","French");
+insert into songs values(107,"La vien rose","Rock", "Eva","French");
+insert into songs values(106,"Timber","Soul", "Greenday","Korean");
+insert into songs values(103,"Maahi ve","Pop", "Arjit Singh","Hindi");
+insert into songs values(111,"Dard Ae Disco","Pop", "Arjit Singh","Hindi");
+insert into songs values(111,"Summer of 69","Rock", "Bryan Adams","English");
+insert into songs values(111,"Drive by","EDM", "Justin Bieber","English");
+insert into songs values(114,"Mushi Mushi","R&B", "BTS","Korean");
+insert into songs values(112,"Bebo","EDM", "Anu Malik","Hindi");
+insert into songs values(112,"Ghumar","EDM", "Arjit Singh","Hindi");
+insert into songs values(108,"Bandook Meri Laila","Rock", "Arjit Singh","Hindi");
+insert into songs values(104,"Beat it","HipHop", "Kesha","English");
+insert into songs values(104,"Boom Boom pow","EDM", "Michael Jackson","Korean");
+insert into songs values(111,"Kajra re","Rock", "Nucleya","Hindi");
+insert into songs values(102,"Rosia","Soul", "BTS","French");
+
+
+Artist:
+create table Artist (A_id varchar(200) primary key, A_name varchar(200),us_id int, foreign key(us_id) references user(us_id));
+
+
+Values:
+
+insert into Artist values ("A_501", "Anu Malik", 102);
+insert into Artist values ("A_502", "Arjit Singh", 107);
+insert into Artist values ("A_503", "Justin Bieber", 111);
+insert into Artist values ("A_504", "BTS", 110);
+insert into Artist values ("A_505", "Nucleya", 102);
+insert into Artist values ("A_506", "Michael Jackson", 104);
+insert into Artist values ("A_507", "Kesha", 108);
+insert into Artist values ("A_508", "Bryan Adams", 111);
+insert into Artist values ("A_509", "Major Lazer", 109);
+insert into Artist values ("A_510", "Eva", 113);
+insert into Artist values ("A_511", "Greenday",104);
+insert into Artist values ("A_512", "Florida",101);
+
+
+
+Playlist:
+create table Playlist (us_id int, foreign key(us_id) references user(us_id), play_name varchar(500), song_name varchar(500), lang_name varchar(500), artist varchar(500));
+
+Values:
+
+insert into Playlist values (111, "Hit list", "Despacito", "Spanish", "Justin Bieber");
+insert into Playlist values (111, "Hit list", "Cava Cava", "French", "Eva");
+insert into Playlist values (111, "Hit list", "Whistle", "English", "Florida");
+insert into Playlist values (103, "Long Drive", "Make It Right", "Korean", "BTS");
+insert into Playlist values (103, "Long Drive", "21 guns", "English", "Greenday");
+insert into Playlist values (103, "Long Drive", "Beat it", "English", "Kesha");
+insert into Playlist values (103, "Long Drive", "Timber", "Korean", "Greenday");
+insert into Playlist values (103, "Long Drive", "Ghumar", "Hindi", "Arjit Singh");
+insert into Playlist values (108, "Gym", "Despacito", "Spanish", "Justin Bieber");
+insert into Playlist values (108, "Gym", "21 guns", "English", "Greenday");
+insert into Playlist values (108, "Gym", "Malanag", "Hindi", "Anu Malik");
+insert into Playlist values (108, "Gym", "Timber", "Korean", "Greenday");
+insert into Playlist values (108, "Gym", "Dard Ae Disco", "Hindi", "Arjit Singh");
+insert into Playlist values (108, "Gym", "Bandook Meri Laila", "Hindi", "Arjit Singh");
+insert into Playlist values (102, "Car Songs", "Yeehaw", "French", "Major Lazer");
+insert into Playlist values (102, "Car Songs", "Summer of 69", "English", "Bryan Adams");
+insert into Playlist values (102, "Car Songs", "Mushi Mushi", "Korean", "BTS");
+insert into Playlist values (102, "Car Songs", "Bella Ciao", "Spanish", "BTS");
+insert into Playlist values (105, "Running", "Bon Bon", "French", "Greenday");
+insert into Playlist values (105, "Running", "Timber", "Korean", "Greenday");
+insert into Playlist values (105, "Running", "21 guns", "English", "Greenday");
+insert into Playlist values (114, "Party", "Malang", "Hindi", "Anu Malik");
+insert into Playlist values (114, "Party", "Bebo", "Hindi", "Anu Malik");
+insert into Playlist values (114, "Party", "Bandook Meri Laila", "Hindi", "Arjit Singh");
+insert into Playlist values (114, "Party", "Kajra re", "Hindi", "Nucleya");
+insert into Playlist values (114, "Party", "Chalte Chalte", "Hindi", "Anu Malik");
+insert into Playlist values (114, "Party", "Agneepath", "Hindi", "Arjit Singh");
+insert into Playlist values (114, "Party", "Dard Ae Disco", "Hindi", "Arjit Singh");
+insert into Playlist values (107, "New playlist", "21 guns", "English", "Greenday");
+insert into Playlist values (107, "New playlist", "Whistle", "English", "Florida");
+insert into Playlist values (107, "New playlist", "Bon Bon", "French", "Greenday");
+insert into Playlist values (107, "New playlist", "Cava Cava", "French", "Eva");
+insert into Playlist values (106, "Aerobics playlist", "Make It Right", "Korean", "BTS");
+insert into Playlist values (106, "Aerobics playlist", "Bella Ciao", "Spanish", "BTS");
+insert into Playlist values (106, "Aerobics playlist", "Dynamite", "Korean", "BTS");
+insert into Playlist values (106, "Aerobics playlist", "Mushi Mushi", "Korean", "BTS");
+
+
+
+
+
+
+
+

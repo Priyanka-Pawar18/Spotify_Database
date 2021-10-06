@@ -1,0 +1,100 @@
+Q1. Create after update trigger on Member table
+
+create table update_member_log (logid int auto_increment, us_id int, mem_id varchar(25), mem_name varchar(20), mem_phone varchar(10), mem_mail varchar(200), action varchar (25), changedon date, primary key (logid));
+
+After update trigger-
+
+delimiter @@
+create trigger update_table_member1
+after update on member
+for each row
+   begin
+     insert into update_member_log set action="update", us_id=old.us_id, mem_id=old.mem_id, mem_name=old.mem_name, mem_phone=old.mem_phone, mem_mail=old.mem_mail, changedon=now();
+end @@
+
+Update Query:
+update member set mem_mail="Vikram_k@yahoo.com" where mem_id="m_501";
+
+Log table:
+select* from update_member_log;
+
+
+
+Q2. Create after update trigger on Genre table
+
+create table update_genre_log (logid int auto_increment, us_id int, genre_name varchar(50), song varchar(200), action varchar (25), changedon date, primary key (logid));
+
+After update trigger-
+
+delimiter @@
+create trigger update_table_genre1
+after update on genre
+for each row
+   begin
+     insert into update_genre_log set action="update", us_id=old.us_id, genre_name=old.genre_name, song=old.song, changedon=now();
+end @@
+
+Update Query-
+update genre set genre_name="Pop" where song="Bandook Meri Laila";
+
+Log table-
+select* from update_genre_log;
+
+Q3. Create before insert trigger on Admin table.
+
+create table insert_admin_log (logid int auto_increment, Ad_id int, Ad_name varchar(50), Ad_mail varchar(200), action varchar (25), changedon date, primary key (logid));
+
+INSERT TRIGGER-
+
+delimiter @@
+create trigger insert_into_admin
+before insert on admin
+for each row
+   begin
+     insert into insert_admin_log set action="insert", Ad_id=new.Ad_id, Ad_name=new.Ad_name, Ad_mail=new.Ad_mail, changedon=now();
+end @@
+
+insert into admin values (12, "Sofia", "sof13@gmail.com");
+delete from admin where Ad_id=11;
+
+LOG table-
+select * from insert_admin_log;
+
+
+
+Q4. Create after update trigger on user table.
+
+create table update_user_log_table (logid int auto_increment, us_id int, us_name varchar(50), us_phone varchar(10), us_mail varchar(200), action varchar (25), changedon date, primary key (logid));
+
+
+delimiter @@
+create trigger updatetable_user7   
+after update on user
+for each row
+   begin
+     insert into update_user_log_table set action="update", us_id=old.us_id, us_name=old.us_name, us_phone=old.us_phone, us_mail=old.us_mail, changedon=now();
+end @@
+
+update user set us_name="Shivani Kumar" where us_id=111;
+
+
+Q5. Create after update on language table.
+
+create table update_lang_log (logid int auto_increment, us_id int, song_name varchar(50), lang_name varchar(200), action varchar (25), changedon date, primary key (logid));
+
+delimiter @@
+create trigger update_table_lang1
+after update on language
+for each row
+   begin
+     insert into update_lang_log set action="update", us_id=old.us_id, song_name=old.song_name, lang_name=old.lang_name, changedon=now();
+end @@
+
+
+UPDATE QUERY
+update language set lang_name="French" where song_name="Mushi Mushi"; 
+
+
+LOG TABLE-
+select* from update_lang_log;
+

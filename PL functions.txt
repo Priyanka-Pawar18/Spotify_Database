@@ -1,0 +1,67 @@
+Q1. Find the total number of songs.
+
+delimiter @@
+create function totsongs()
+returns int
+begin
+declare total int;
+select count(song_name) into total from songs;
+return total;
+end @@
+
+select totsongs();
+
+Q2. How many songs are sung by a particular artist
+
+delimiter @@
+create function songsungbyartist()
+returns int
+begin
+declare total int;
+select count(song_name) into total from songs where song_artist="BTS";
+return total;
+end @@
+
+select songsungbyartist();
+
+
+Q3. How many members have gotten Platinum membership?
+
+delimiter @@
+create function membershiptype()
+returns int
+begin
+declare total int;
+select count(mem_type) into total from membership_type where mem_type="Platinum";
+return total;
+end @@
+
+select memtype();
+
+Q4. How many songs are there of the language Korean?
+
+delimiter @@
+create function korsongs()
+returns int
+begin
+declare totsongs int;
+select count(lang_name) into totsongs from language where lang_name="Korean";
+return totsongs;
+end @@
+
+
+Q5. How many songs of EDM genre are present?
+
+delimiter @@
+create function edmsongs()
+returns int
+begin
+declare totsongs int;
+select count(genre_name) into totsongs from genre where genre_name="EDM";
+return totsongs;
+end @@
+
+select edmsongs();
+
+
+Q. Which artist has sung minimum number of songs?***

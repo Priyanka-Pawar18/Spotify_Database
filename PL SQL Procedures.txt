@@ -1,0 +1,63 @@
+Q1. Write a procedure to find membership details
+
+delimiter $$
+create procedure membership_by_name7(in mem_name varchar(50))
+begin
+  select * 
+  from member m, membership s, membership_type n 
+  where m.mem_id=s.mem_id and s.mem_id=n.mem_id and m.mem_name=mem_name;
+end $$
+
+call membership_by_name7("Vikram Kohli");
+
+
+
+Q2. Write a procedure to find the total number of songs of a particular genre.
+
+delimiter $$
+create procedure songnum_bygenre(in genrename varchar(50))
+begin
+  select count(genre_name)
+  from genre where genre.genre_name = genrename;
+end $$
+
+
+call songnum_bygenre("Soul");
+
+
+Q3. Write a procedure to increase the offer of a particular type of membership by 10%.
+
+delimiter $$
+create procedure update_offer8(in memtype varchar(50))
+ begin
+    update membership_type set offer_by_percentage=offer_by_percentage+(offer_by_percentage*10)/100 where membership_type.mem_type=memtype;
+end $$
+
+
+call update_offer8("Silver");
+
+
+Q4. Write a procedure to display details of the member whose phone number is specified.
+
+delimiter $$
+create procedure member_by_phone(in mem_phone varchar(10))
+begin
+  select * 
+  from member 
+  where member.mem_phone=mem_phone;
+end $$
+
+call member_by_phone("7232456777");
+
+
+Q5. Write a procedure to find song details whose language is specified.
+
+delimiter $$
+create procedure song_by_lang(in language varchar(100))
+begin
+  select * 
+  from songs
+  where songs.song_lang=language;
+end $$
+
+ call song_by_lang("Hindi");

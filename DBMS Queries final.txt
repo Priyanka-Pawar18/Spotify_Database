@@ -1,0 +1,95 @@
+Q1) Which members have platinum membership?
+    select* from membership_type where mem_type="Platinum";
+    select m.mem_id,m.mem_name,s.mem_type from member m, membership_type s where m.mem_id=s.mem_id and s.mem_type="Platinum";
+
+Q2) Which memeber has yearly membership?
+    select* from membership where duration="1 year";
+    select m.mem_id, m.mem_name, n.mem_type, s.duration from member m, membership s, membership_type n where m.mem_id=s.mem_id and s.mem_id=n.mem_id and s.duration="1 year";
+
+Q3) Which users use rediffmail?
+    select* from user where us_mail like '%rediffmail.com';
+    
+    
+Q4) What is the mailid for admin jim ?
+    select Ad_name,Ad_mail from admin where Ad_name="Jim";
+   
+Q5) Which Members have registered for membership  2018?
+    select* from membership where year(mem_regdate)="2018";
+    select m.mem_id,m.mem_name,s.mem_regdate from member m, membership s where m.mem_id=s.mem_id and year(s.mem_regdate)="2018";
+
+    
+Q6) List the types of genre of all Korean songs present in the song list?
+    select song_genre,song_lang from songs where song_lang="Korean";
+    
+
+Q7) List the songs of genre "rock"
+    select song,genre_name from genre where genre_name="Rock";
+
+Q8) List all songs sung by artist "Anu Malik"? 
+    select song_artist, song_name from songs where song_artist="Anu Malik";
+
+Q9) Which hindi pop song is sung by Arjit Singh whose name starts with M?
+    select song_name, song_genre, song_artist, song_lang from songs where song_genre="Pop" and song_artist="Arjit Singh" and song_lang="Hindi" and song_name like "M%" ;
+
+Q10) How many users are members?
+     select count(s.us_id) from user s , member m where s.us_id=m.us_id;
+     
+Q11) Find the number of hindi songs
+     select count(song_lang) from songs where song_lang="Hindi";
+
+Q12) How many songs are sung by BTS?
+     select count(song_artist) from songs where song_artist="BTS";
+
+     Which artist sung the maximum number of songs?
+     ****
+
+     How many French songs are present in users playlists.
+     ****
+
+Q13) In how many languages has Greenday sung a song.
+     select distinct song_lang, song_name, song_artist from songs where song_artist="Greenday";
+ (Correct)    select count(distinct song_lang) from songs where song_artist="Greenday";
+     
+
+Q14) How many songs does party playlist have?
+     select count(play_name) from playlist where play_name="Party";
+
+Q15) Give genre wise song details
+     select* from songs order by song_genre;
+     
+Q16) Give membership type wise member details.
+     select* from membership_type order by mem_type;
+     select m.mem_id, m.mem_name,s.mem_type, n.mem_regdate, n.mem_expdate, n.duration from member m, membership_type s, membership n where m.mem_id=s.mem_id and s.mem_id=n.mem_id order by (s.mem_type);
+
+Q17) List artist wise genre details.
+     select* from songs order by song_artist;
+
+Q18) Give langauge wise list of songs.
+     select* from songs order by song_lang;
+     
+Q19) Give list of members that have availed 10% discount offer. 
+     select m.mem_id,m.mem_name, s.mem_type, s.offer_by_percentage from member m , membership_type s where m.mem_id=s.mem_id and offer_by_percentage=10 ;
+
+Q20) Display list of members registered year wise.
+     select m.mem_id,m.mem_name,n.mem_type,s.mem_regdate from member m,membership_type n, membership s where m.mem_id=s.mem_id and s.mem_id=n.mem_id order by year(s.mem_regdate);
+
+Q21) Display the details of Users who are members.
+     select m.mem_id, u.us_name, u.us_phone, u.us_mail from user u join member m on m.us_id=u.us_id;
+     
+     Which song of genre "soul" is sung by Anu Malik? ****
+
+Q22) Which users have listened to songs sung by Anu Malik?
+     select u.us_id,u.us_name,s.song_name, s.song_artist from user u , songs s where u.us_id=s.us_id and s.song_artist="Anu Malik";
+
+
+     Which playlist has all songs of different genre?*** 
+     
+
+Q23) Which French song did Vikram Kohli listen to.
+     select u.us_name,s.song_name,s.song_lang from user u, songs s where u.us_id=s.us_id and s.song_lang="French" and u.us_name="Vikram Kohli";
+     
+Q24) Which genre of songs has the user 111 listened to?
+     select distinct song_genre from songs where us_id=111;    
+     
+Q25) What is the artist id of the artist who sang "Whistle"?
+     select a.a_id, a.a_name, s.song_name from artist a, songs s where a.a_name=s.song_artist and s.song_name="Whistle"; 
